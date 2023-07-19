@@ -71,3 +71,7 @@ footer{
   background-color: grey;
   height: 20dvh;
 }
+.bg{
+  display: grid;
+  place-content: center;
+}
