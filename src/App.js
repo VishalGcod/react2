@@ -4,6 +4,7 @@ import { Fun2, Fun1 } from "./task-prep";
 import Ustates from "./task-prep2";
 import { Buttonclick } from "./element";
 import { Ta, Para } from "./element";
+import { Disp } from "./newtry";
 
 function App() {
   // const data='hello world'
@@ -26,7 +27,9 @@ function App() {
       <Fun2/>
       <Ustates/> */}
 
-      <Buttonclick />
+      {/* <Buttonclick /> */}
+      <Disp />
+      <h1>hello</h1>
     </div>
   );
 }
