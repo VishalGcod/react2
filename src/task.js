@@ -22,6 +22,7 @@ export const Btn = styled.button`
   height: 30px;
 `;
 
+export const Div=styled.div`width 120px`
 
 function Apps() {
   const [bg, setBgColor] = useState("");
@@ -45,5 +46,6 @@ function Apps() {
     </div>
   );
 }
+
 
 export default Apps;
