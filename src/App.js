@@ -5,31 +5,24 @@ import Ustates from "./task-prep2";
 import { Buttonclick } from "./element";
 import { Ta, Para } from "./element";
 import { Disp } from "./newtry";
+import { Rate } from "antd";
+import Stars from "./starrating";
+import StarRating from "./halfstar";
+import { Formdta } from "./form";
+import itachi from './itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg'
+import  styled from "styled-components";
 
 function App() {
-  // const data='hello world'
-  // const data2=25
-  // const data3= true
-  // const data4=[1,2,3]
-  // const data5={name:'vishal', age:'22'}
-  // const link='https://github.com/VishalGcod/React'
+    const [rating, setRating] = useState('');
+  
+    const handleRatingChange = (newValue) => {
+      setRating(newValue);
+    };
   return (
     <div className="App">
-      {/* <div className="Cont">{data}  {data2}</div>
-      <div className="Cont">{data2}</div>
-      <div className="Cont">{data3}</div>
-      <div className="Cont">{data4}</div>
-      <div className="Cont">{Math.random()*1000000*Math.random()*1000000}</div>
-      <div className="Cont">{[1,2,3,4,5]}</div>
-      <a href={link}>GIT</a> */}
-      {/* <div className="Cont">{data5}</div> */}
-      {/* <Fun1/>
-      <Fun2/>
-      <Ustates/> */}
-
-      {/* <Buttonclick /> */}
-      <Disp />
-      <h1>hello</h1>
+      <Formdta/>
+      {/* <StarRating rating={rating} onChange={handleRatingChange} /> */}
+      {/* <p>Current Rating: {rating}</p> */}
     </div>
   );
 }
