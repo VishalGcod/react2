@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+body{
+  background-color: pink;
+}
 .App-header {
   background-color: #454546;
   min-height: 10vh;

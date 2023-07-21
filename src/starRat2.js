@@ -1,4 +1,5 @@
 import React from 'react';
+import { Rate } from 'antd';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 const StarRating = (props) => {
   let rating=props.rate
@@ -43,4 +44,3 @@ export const Star =(rating)=>{
     return<div>{gstar()}</div>
   }
 
-  

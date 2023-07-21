@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 import StarRating from "./starRat2";
 import { Star } from "./starRat2";
+import { Rate } from 'antd';
 
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
@@ -75,6 +76,7 @@ export const Formdta = () => {
     setrate(e.target.value);
   };
 
+
   const Drop2 = () => {
     const rarr = ["select ratings", 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
     return (
@@ -119,6 +121,15 @@ export const Formdta = () => {
     console.log(e.target.value);
     settest(e.target.value);
   };
+
+  // const Star2 = () => {
+  //   return (
+  //     <div>
+  //       <Rate allowHalf value={parseFloat()}></Rate>
+  //     </div>
+  //   );
+  // };
+
   const funon = () => {
     settest2(tester);
   };
@@ -129,11 +140,11 @@ export const Formdta = () => {
     setFormData(updatedFormData);
   };
 
-  // const isFormValid = fname !== "" && city !== "" && textar !== "";
+  const isFormValid = fname !== "" && city !== "" && textar !== "";
 
-  const isFormValid = true;
+  // const isFormValid = true;
   return (
-    <Body>
+    <div>
       <Frm onSubmit={subform}>
         {Imp()}
         <Drop />
@@ -161,17 +172,17 @@ export const Formdta = () => {
               <br />
               Ratings:{data.rate}
               <br />
-              <StarRating rate={data.rate}></StarRating>
-              <Star rate={data.rate}></Star>
+              {/* <StarRating rate={data.rate}></StarRating> */}
+              {/* <Star2 value={data.rate}></Star2> */}
               <br />
-              Description:{data.textar}
+              Description:<p style={{overflow:'scroll'}}>{data.textar}</p>
               <br />
               <button onClick={() => deleteDta(index)}>DELETE</button>
             </Datacontent>
           </Items>
         ))}
       </Divs>
-    </Body>
+    </div>
   );
 };
 
@@ -201,7 +212,7 @@ const Items = styled.div`
   align-items: center;
   justify-content: space-evenly;
   border: 2px solid grey;
-  margin:5%;
+  margin: 5%;
 `;
 
 const Idiv = styled.img`
@@ -217,6 +228,7 @@ const Frm = styled.form`
   margin-bottom: 25px;
   padding: 2%;
   border: 2px solid grey;
+  margin-top:5%;
   box-shadow: 4px 4px 4px grey;
   width: 50dvw;
   height: 40dvh;
@@ -229,6 +241,3 @@ const Fdt = styled.div`
   margin-left: 25%;
 `;
 
-const Body = styled.div`
-  background-color: #fff0f5;
-`;
