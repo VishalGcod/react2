@@ -2,6 +2,7 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 import StarRating from "./starRat2";
+import { Star } from "./starRat2";
 
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
@@ -161,6 +162,7 @@ export const Formdta = () => {
               Ratings:{data.rate}
               <br />
               <StarRating rate={data.rate}></StarRating>
+              <Star rate={data.rate}></Star>
               <br />
               Description:{data.textar}
               <br />
@@ -199,6 +201,7 @@ const Items = styled.div`
   align-items: center;
   justify-content: space-evenly;
   border: 2px solid grey;
+  margin:5%;
 `;
 
 const Idiv = styled.img`

@@ -22,7 +22,7 @@ const StarRating = (props) => {
 export default StarRating;
 
 
-export const star =(rating)=>{
+export const Star =(rating)=>{
   const r=rating.rate
   console.log(r); 
   const arr=[]
@@ -38,10 +38,9 @@ export const star =(rating)=>{
           arr.push(<FaRegStar/>)
         }
       }
-      return(
-        <h1>hi</h1>
-      )
+      return arr
     }
+    return<div>{gstar()}</div>
   }
 
   
