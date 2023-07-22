@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 import StarRating from "./starRat2";
@@ -20,9 +21,8 @@ export const Formdta = () => {
 
   const subform = (e) => {
     e.preventDefault();
-    const newFormData = [...formData, { fname, city, rate, textar }];
+    const newFormData = [ ...formData , { fname, city, rate, textar }];
     setFormData(newFormData);
-    console.log(newFormData);
     setfname("");
     setcity("");
     setrate("");
@@ -140,6 +140,11 @@ export const Formdta = () => {
     setFormData(updatedFormData);
   };
 
+  const delDta=(newind)=>{
+    const upd= formData.filter((_,i)=>i!==newind)
+    setFormData(upd)
+  }
+
   const isFormValid = fname !== "" && city !== "" && textar !== "";
 
   // const isFormValid = true;
@@ -172,12 +177,13 @@ export const Formdta = () => {
               <br />
               Ratings:{data.rate}
               <br />
-              {/* <StarRating rate={data.rate}></StarRating> */}
+              <Rate allowHalf value={parseFloat(data.rate)}></Rate>
               {/* <Star2 value={data.rate}></Star2> */}
               <br />
               Description:<p style={{overflow:'scroll'}}>{data.textar}</p>
               <br />
               <button onClick={() => deleteDta(index)}>DELETE</button>
+              <button onClick={()=>delDta(index)}>del</button>
             </Datacontent>
           </Items>
         ))}

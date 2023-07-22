@@ -1,8 +1,10 @@
+import React , { Component}  from 'react';
 import "./App.css";
-import { useState } from "react";
-import { Apis } from "./reactPart2";
+// import
+// import { Apis } from "./reactPart2";
 import { Formdta } from "./form";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
+import { Fill } from './practiceasses3';
 
 function App() {
   //     const [rating, setRating] = useState('');
@@ -12,7 +14,8 @@ function App() {
   //     };
   return (
     <div className="App">
-      <Formdta/>
+      {/* <Formdta/> */}
+      {/* <Fill/> */}
       {/* <Apis /> */}
       {/* <StarRating rating={rating} onChange={handleRatingChange} /> */}
       {/* <p>Current Rating: {rating}</p> */}
