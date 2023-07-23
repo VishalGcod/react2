@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { styled } from "styled-components";
 
 export const Fill = () => {
   const [form, getform] = useState([]);
@@ -39,12 +40,12 @@ export const Fill = () => {
     getpass(e.target.value);
   };
 
-  const deleted=(ind)=>{
-    const del=form.filter((i)=>i==ind)
-    getform(del)
-  }
+  const deleted = (ind) => {
+    const del = form.filter((i) => i == ind);
+    getform(del);
+  };
 
-  const btnhide = name!== "";
+  const btnhide = name !== "";
 
   return (
     <div>
@@ -59,10 +60,34 @@ export const Fill = () => {
           <div key={index}>
             <h1>{f.name}</h1>
             <h1>{f.pass}</h1>
-            <button onClick={()=>deleted(index)}>del</button>
+            <button onClick={() => deleted(index)}>del</button>
           </div>
         ))}
       </div>
     </div>
   );
 };
+
+export const Blog = ({items,title}) => {
+// export const Blog = (props) => {
+//   const items=props.items
+//   const title=props.title
+  console.log(items);
+  return (
+    <div className="blogs">
+      <h1>{title}</h1>
+      {items.map((item, index) => (
+        <div key={index}>
+          <h1>{item.title}</h1>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const Flexdiv=styled.div`
+display:flex;
+align-items:center;
+justify-content:spacebetween;
+`;
