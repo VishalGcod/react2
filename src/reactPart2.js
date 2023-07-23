@@ -32,14 +32,23 @@ export const Apis = () => {
 };
 
 
-export const Header=()=>{
+// export const Header=()=>{
+//   return(
+//     <div>
+//     <h1>nav</h1>
+//     <div>
+//     <a href="/">Home</a>
+//     <a href="/create">Create</a>
+//     </div>
+//     </div>
+//   )
+// } 
+
+export function Child(props){
   return(
     <div>
-    <h1>nav</h1>
-    <div>
-    <a href="/">Home</a>
-    <a href="/create">Create</a>
-    </div>
+      <h1>Child</h1>
+      <button onClick={()=>props.changeword('gv')}>but</button>
     </div>
   )
-} 
+}

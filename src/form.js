@@ -5,8 +5,8 @@ import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x18
 import StarRating from "./starRat2";
 import { Star } from "./starRat2";
 import { Rate } from 'antd';
-
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { Child } from "./reactPart2";
 
 export const Formdta = () => {
   const [formData, setFormData] = useState([]);
@@ -145,6 +145,29 @@ export const Formdta = () => {
     setFormData(upd)
   }
 
+  // const Namefilter=({Formdta})=>{
+  //   const{fname,city}=formData
+  //   const Filt=[fname,city].filter(Boolean).join('')
+  //   return(
+  //     <div>
+  //       <div>filtered={Filt}</div>
+  //     </div>
+  //   )
+  // }
+
+  const editdata=(ind)=>{
+    const newname=prompt('data to be edited')
+    const newcity=prompt('data to be edited')
+    const newrate=prompt('data to be edited')
+    const newdesc=prompt('data to be edited')
+    setfname(newname)
+    setcity(newcity)
+    setrate(newrate)
+    settextar(newdesc)
+    const updFormData = [{ fname, city, rate, textar }];
+    setFormData(updFormData);
+  }
+
   const isFormValid = fname !== "" && city !== "" && textar !== "";
 
   // const isFormValid = true;
@@ -152,6 +175,7 @@ export const Formdta = () => {
     <div>
       <Frm onSubmit={subform}>
         {Imp()}
+        {/* <Namefilter formData={formData}/> */}
         <Drop />
         <Drop2 />
         {Ta()}
@@ -182,8 +206,10 @@ export const Formdta = () => {
               <br />
               Description:<p style={{overflow:'scroll'}}>{data.textar}</p>
               <br />
+              <button onClick={()=>editdata(index)}>Edit</button>
+              <br></br>
               <button onClick={() => deleteDta(index)}>DELETE</button>
-              <button onClick={()=>delDta(index)}>del</button>
+              {/* <button onClick={()=>delDta(index)}>del</button> */}
             </Datacontent>
           </Items>
         ))}
@@ -247,3 +273,13 @@ const Fdt = styled.div`
   margin-left: 25%;
 `;
 
+
+export function Par(){
+  const [word,setword]=useState('vishal')
+  return(
+    <div>
+      <h1>{word}</h1>
+      <Child changeword={word=>setword(word)}/>
+    </div>
+  )
+}

@@ -1,7 +1,7 @@
 import React , { Component}  from 'react';
 import "./App.css";
 import { Apis, Header } from "./reactPart2";
-import { Formdta } from "./form";
+import { Formdta, Par } from "./form";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 import { Fill } from './practiceasses3';
 import { Flexdiv } from './practiceasses3';
@@ -14,14 +14,16 @@ function App() {
   //     };
   return (
     <div className="App">
-      {/* <Formdta/> */}
-      <Header/>
+      {/* <h1>hi</h1>
+      <Par/> */}
+      <Formdta/>
+      {/* <Header/>
       <div>
       <Fill/>
       </div>
       <div>
       <Apis/>
-      </div>
+      </div> */}
       {/* <StarRating rating={rating} onChange={handleRatingChange} /> */}
       {/* <p>Current Rating: {rating}</p> */}
     </div>
