@@ -175,6 +175,7 @@ export const Formdta = () => {
     <div>
       <Frm onSubmit={subform}>
         {Imp()}
+        <input type="search" style={{height:'25px', width:'200px'}}></input>
         {/* <Namefilter formData={formData}/> */}
         <Drop />
         <Drop2 />
