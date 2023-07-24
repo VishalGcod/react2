@@ -22,13 +22,35 @@ export const Posting = () => {
     setval(e.target.value);
   };
 
-  const fetching=()=>{
-    axios.get("http://localhost:8000/blogs").then(res=>{
-      if(res.status==200){
-      setdta(res.data);
-      console.log(res.data);
-      }
-    }).catch(err=>alert(err))
+  const fetching = () => {
+    axios
+      .get("http://localhost:8000/blogs")
+      .then((res) => {
+        if (res.status == 200) {
+          setdta(res.data);
+          console.log(res.data);
+        }
+      })
+      .catch((err) => alert(err));
+  };
+
+  const deletreq = (dta) => {
+    console.log(dta);
+    axios
+      .delete("http://localhost:8000/blogs/"+dta)
+      .then(res=> console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const updatereq=(dta)=>{
+    console.log(dta);
+    const titleup=prompt('set new title')
+    console.log(titleup);
+    const newdata={title:titleup, description: "leather", price: 70.3}
+    axios
+      .put("http://localhost:8000/blogs/"+dta,newdata)
+      .then(res=> console.log(res))
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -37,9 +59,11 @@ export const Posting = () => {
       <button onClick={() => add()}>Add</button>
       <input onChange={inputing}></input>
       <button onClick={fetching}>fetch data</button>
-      {dta2.map((dta)=>(
+      {dta2.map((dta,index) => (
         <div>
           <h1>{dta.title}</h1>
+          <button onClick={() => deletreq(dta.id)}>delete</button>
+          <button onClick={()=> updatereq(dta.id)}>Update</button>
         </div>
       ))}
     </div>

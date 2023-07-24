@@ -31,7 +31,7 @@ function App() {
       {/* <StarRating rating={rating} onChange={handleRatingChange} /> */}
       {/* <p>Current Rating: {rating}</p> */}
       {/* <Next/> */}
-      <Posting/>
+      {/* <Posting/> */}
     </div>
   );
 }
