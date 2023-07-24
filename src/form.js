@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 import StarRating from "./starRat2";
 import { Star } from "./starRat2";
-import { Rate } from 'antd';
+import { Rate } from "antd";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { Child } from "./reactPart2";
 
@@ -21,7 +21,7 @@ export const Formdta = () => {
 
   const subform = (e) => {
     e.preventDefault();
-    const newFormData = [ ...formData , { fname, city, rate, textar }];
+    const newFormData = [...formData, { fname, city, rate, textar }];
     setFormData(newFormData);
     setfname("");
     setcity("");
@@ -75,7 +75,6 @@ export const Formdta = () => {
     console.log(e.target.value);
     setrate(e.target.value);
   };
-
 
   const Drop2 = () => {
     const rarr = ["select ratings", 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
@@ -140,10 +139,10 @@ export const Formdta = () => {
     setFormData(updatedFormData);
   };
 
-  const delDta=(newind)=>{
-    const upd= formData.filter((_,i)=>i!==newind)
-    setFormData(upd)
-  }
+  const delDta = (newind) => {
+    const upd = formData.filter((_, i) => i !== newind);
+    setFormData(upd);
+  };
 
   // const Namefilter=({Formdta})=>{
   //   const{fname,city}=formData
@@ -155,28 +154,45 @@ export const Formdta = () => {
   //   )
   // }
 
-  const editdata=(ind)=>{
-    const newname=prompt('data to be edited')
-    const newcity=prompt('data to be edited')
-    const newrate=prompt('data to be edited')
-    const newdesc=prompt('data to be edited')
-    setfname(newname)
-    setcity(newcity)
-    setrate(newrate)
-    settextar(newdesc)
+  const editdata = (ind) => {
+    const newname = prompt("data to be edited");
+    const newcity = prompt("data to be edited");
+    const newrate = prompt("data to be edited");
+    const newdesc = prompt("data to be edited");
+    setfname(newname);
+    setcity(newcity);
+    setrate(newrate);
+    settextar(newdesc);
     const updFormData = [{ fname, city, rate, textar }];
     setFormData(updFormData);
-  }
+  };
 
-  const filterData=formData.filter((item)=>{
+  const filterData = formData.filter((item) => {
     // item.fname.toLoweCase().includes()
-  })
+  });
 
   const isFormValid = fname !== "" && city !== "" && textar !== "";
 
   // const isFormValid = true;
+  const[searchquery,setsearchquery]=useState('')
+  const searchdata=(e)=>{
+    setsearchquery(e.target.value)
+    console.log(searchquery);
+  }
+  const filtdta=formData.filter((i)=>{
+    i.fname.toLowerCase().includes(searchquery.toLowerCase())
+  })
+
   return (
     <div>
+      <input
+        type="search"
+        placeholder="search"
+        value={searchquery}
+        onChange={()=>searchdata()}
+        style={{ height: "25px", width: "200px", marginLeft: "30%" }}
+      ></input>
+
       <Frm onSubmit={subform}>
         {Imp()}
         {/* <Namefilter formData={formData}/> */}
@@ -192,6 +208,7 @@ export const Formdta = () => {
           </button>
         )}
       </Frm>
+
       <Divs>
         {formData.map((data, index) => (
           <Items key={index}>
@@ -199,7 +216,6 @@ export const Formdta = () => {
               <Idiv src={itachi} height={170} width={170}></Idiv>
             </div>
             <Datacontent>
-            {/* <input type="search" style={{height:'25px', width:'200px',marginLeft:'30%'}}></input> */}
               Name:{data.fname}
               <br />
               City:{data.city}
@@ -209,9 +225,9 @@ export const Formdta = () => {
               <Rate allowHalf value={parseFloat(data.rate)}></Rate>
               {/* <Star2 value={data.rate}></Star2> */}
               <br />
-              Description:<p style={{overflow:'scroll'}}>{data.textar}</p>
+              Description:<p style={{ overflow: "scroll" }}>{data.textar}</p>
               <br />
-              <button onClick={()=>editdata(index)}>Edit</button>
+              <button onClick={() => editdata(index)}>Edit</button>
               <br></br>
               <button onClick={() => deleteDta(index)}>DELETE</button>
               {/* <button onClick={()=>delDta(index)}>del</button> */}
@@ -265,7 +281,7 @@ const Frm = styled.form`
   margin-bottom: 25px;
   padding: 2%;
   border: 2px solid grey;
-  margin-top:5%;
+  margin-top: 5%;
   box-shadow: 4px 4px 4px grey;
   width: 50dvw;
   height: 40dvh;
@@ -278,13 +294,12 @@ const Fdt = styled.div`
   margin-left: 25%;
 `;
 
-
-export function Par(){
-  const [word,setword]=useState('vishal')
-  return(
+export function Par() {
+  const [word, setword] = useState("vishal");
+  return (
     <div>
       <h1>{word}</h1>
-      <Child changeword={word=>setword(word)}/>
+      <Child changeword={(word) => setword(word)} />
     </div>
-  )
+  );
 }

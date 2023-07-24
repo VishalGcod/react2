@@ -20,14 +20,14 @@ function App() {
       {/* <Disp/> */}
       {/* <h1>hi</h1>
       <Par/> */}
-      {/* <Formdta/> */}
-      {/* <Header/>
+      <Formdta/>
+       {/* <Header/> */}
+      {/* <div> */}
+      {/* <Fill/> */}
+      {/* </div> */}
       <div>
-      <Fill/>
+      {/* <Apis/> */}
       </div>
-      <div>
-      <Apis/>
-      </div> */}
       {/* <StarRating rating={rating} onChange={handleRatingChange} /> */}
       {/* <p>Current Rating: {rating}</p> */}
       {/* <Next/> */}
