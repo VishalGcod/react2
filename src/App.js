@@ -17,7 +17,7 @@ function App() {
   //     };
   return (
     <div className="App">
-      <Disp/>
+      {/* <Disp/> */}
       {/* <h1>hi</h1>
       <Par/> */}
       {/* <Formdta/> */}
