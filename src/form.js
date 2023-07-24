@@ -168,6 +168,10 @@ export const Formdta = () => {
     setFormData(updFormData);
   }
 
+  const filterData=formData.filter((item)=>{
+    // item.fname.toLoweCase().includes()
+  })
+
   const isFormValid = fname !== "" && city !== "" && textar !== "";
 
   // const isFormValid = true;
@@ -175,7 +179,6 @@ export const Formdta = () => {
     <div>
       <Frm onSubmit={subform}>
         {Imp()}
-        <input type="search" style={{height:'25px', width:'200px'}}></input>
         {/* <Namefilter formData={formData}/> */}
         <Drop />
         <Drop2 />
@@ -196,6 +199,7 @@ export const Formdta = () => {
               <Idiv src={itachi} height={170} width={170}></Idiv>
             </div>
             <Datacontent>
+            {/* <input type="search" style={{height:'25px', width:'200px',marginLeft:'30%'}}></input> */}
               Name:{data.fname}
               <br />
               City:{data.city}
