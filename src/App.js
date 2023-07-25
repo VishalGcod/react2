@@ -8,6 +8,7 @@ import { Flexdiv } from './practiceasses3';
 import { Disp } from './newtry';
 import { Next } from './next';
 import { Posting } from './post ';
+import { Requests } from './axiosrequests';
 
 function App() {
   //     const [rating, setRating] = useState('');
@@ -20,7 +21,7 @@ function App() {
       {/* <Disp/> */}
       {/* <h1>hi</h1>
       <Par/> */}
-      <Formdta/>
+      {/* <Formdta/> */}
        {/* <Header/> */}
       {/* <div> */}
       {/* <Fill/> */}
@@ -32,6 +33,7 @@ function App() {
       {/* <p>Current Rating: {rating}</p> */}
       {/* <Next/> */}
       {/* <Posting/> */}
+      <Requests/>
     </div>
   );
 }

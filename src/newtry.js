@@ -51,6 +51,14 @@ export const Disp = () => {
       .catch((err) => alert(err));
   };
 
+  const[sdta,getsdta]=useState('')
+  const searchdata=(e)=>{
+    getsdta(e.target.value)
+  }
+  const clicking=()=>{
+
+  }
+
   return (
     <div>
       <Header>
@@ -61,6 +69,10 @@ export const Disp = () => {
             style={{ height: "65px", width: "65px", borderRadius: "50%" }}
           ></img>
         </Imgdiv>
+        <Impdiv>
+        <input type="search" placeholder="search" style={{height:'23px'}} onChange={searchdata}></input>
+        <button onClick={clicking}>search</button>
+        </Impdiv>
         <Nav>
           <span>Home</span>
           <span>Login</span>
@@ -95,6 +107,12 @@ export const Disp = () => {
   );
 };
 
+const Impdiv=styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+`;
+
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -107,7 +125,7 @@ const Header = styled.div`
 
 const Imgdiv = styled.div`
   display: flex;
-  width: 70%;
+  width: 50%;
   justify-content: flex-start;
   margin-left: 2%;
   align-items: center;
@@ -117,7 +135,7 @@ const Nav = styled.div`
   font-size: 25px;
   font-weight: 600;
   display: flex;
-  width: 30%;
+  width: 20%;
   justify-content: space-around;
   align-items: center;
 `;
