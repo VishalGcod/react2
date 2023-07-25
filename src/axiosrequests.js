@@ -103,7 +103,6 @@ export const Home = () => {
   // }
   return (
     <div>
-        <NavTxt/>
       {data.map((m, index) => (
         <DivImg>
           <h1>{m.title}</h1>

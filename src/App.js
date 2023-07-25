@@ -9,11 +9,11 @@ import { Disp } from "./newtry";
 import { Next } from "./next";
 import { Posting } from "./post ";
 import { Home } from "./axiosrequests";
-import {BrowserRouter as
-  Switch,
-  Route,
-  Router
-} from 'react-router-dom';
+// import {BrowserRouter as Switch,
+//   Route,
+//   Router
+// } from 'react-router-dom';
+import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
 import {Login, About, NavTxt } from "./routecomp";
 
 function App() {
@@ -24,8 +24,11 @@ function App() {
   //     };
   return (
     <div className="App">
-      {/* <Router>
-        <Switch>
+      <Router>
+      <div>
+          <NavTxt/>
+      <Switch>
+      
           <Route exact path="/">
             <Home />
           </Route>
@@ -36,7 +39,9 @@ function App() {
             <About />
           </Route>
         </Switch>
-      </Router> */}
+      </div>
+        
+      </Router>
       {/* <Disp/> */}
       {/* <h1>hi</h1>
       <Par/> */}
@@ -50,7 +55,8 @@ function App() {
       {/* <p>Current Rating: {rating}</p> */}
       {/* <Next/> */}
       {/* <Posting/> */}
-      <Home />
+     
+      {/* <Home /> */}
     </div>
   );
 }

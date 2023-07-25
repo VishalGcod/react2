@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from 'react-router-dom';
 import { styled } from "styled-components";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 
@@ -7,7 +7,12 @@ export const Login = () => {
 };
 
 export const About = () => {
-  return <h1>This Is About</h1>;
+  return (
+    <div>
+        <h1>This Is About</h1>
+        <h1>This Is About</h1>
+    </div>
+  );
 };
 
 export const NavTxt = () => {
