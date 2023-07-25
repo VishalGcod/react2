@@ -2,11 +2,17 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { styled } from "styled-components";
+import { NavTxt } from "./routecomp";
 
-export const Requests = () => {
+
+export const Home = () => {
   const [data, setdata] = useState([]);
   const [load, setload] = useState(1);
+//   const [rej, setrej] = useState("");
 
+  //const=RegEx(value,i)
+  //data.filter((ele)=>reg.test(ele?.title))
+  //
   useEffect(() => {
     axios
       .get("http://localhost:8000/Heros")
@@ -23,9 +29,9 @@ export const Requests = () => {
     const upload = load + 1;
     setload(upload);
     const newdta = {
-      id: data.title,
-      image: data.image,
-      otherName: data.otherName,
+      title: data?.title,
+      image: data?.image,
+      otherName: data?.otherName,
     };
     axios
       .post("http://localhost:8000/Heros", newdta)
@@ -37,10 +43,14 @@ export const Requests = () => {
     const upload = load + 1;
     setload(upload);
     console.log(id);
-    axios
-      .delete("http://localhost:8000/Heros/" + id)
-      .then((res) => console.log(res))
-      .catch((err) => alert(err));
+    if (id === 1 || id == 4) {
+      alert("cant delete");
+    } else {
+      axios
+        .delete("http://localhost:8000/Heros/" + id)
+        .then((res) => console.log(res))
+        .catch((err) => alert(err));
+    }
   };
 
   const handleedit = (m) => {
@@ -58,9 +68,42 @@ export const Requests = () => {
       .then((res) => console.log(res))
       .catch((err) => alert(err));
   };
+
+  const [Form, setform] = useState({
+    title: "",
+    image: "",
+    otherName: "",
+  });
+
+  const handleimp = (e) => {
+    console.log(e.target.value);
+    const { name, value } = e.target;
+    setform((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const submitdata = (e) => {
+    e.preventDefault();
+    console.log(Form);
+    const newpost = {
+      title: Form.title,
+      image: Form.image,
+      otherName: Form.otherName,
+    };
+    axios
+      .post("http://localhost:8000/Heros", newpost)
+      .then((res) => console.log(res.data))
+      .catch((err) => alert(""));
+    const upload = load + 1;
+    setload(upload);
+  };
+
   // }
   return (
     <div>
+        <NavTxt/>
       {data.map((m, index) => (
         <DivImg>
           <h1>{m.title}</h1>
@@ -71,6 +114,30 @@ export const Requests = () => {
           <button onClick={() => handledel(m.id)}>Delete</button>
         </DivImg>
       ))}
+      <form onSubmit={submitdata}>
+        <input
+          type="text"
+          placeholder="add title"
+          name="title"
+          value={Form.title}
+          onChange={handleimp}
+        ></input>
+        <input
+          type="text"
+          placeholder="add image url"
+          name="image"
+          value={Form.image}
+          onChange={handleimp}
+        ></input>
+        <input
+          type="text"
+          placeholder="add othername"
+          name="otherName"
+          value={Form.otherName}
+          onChange={handleimp}
+        ></input>
+        <button>Post Data</button>
+      </form>
     </div>
   );
 };
@@ -89,3 +156,4 @@ const DivImg = styled.div`
   width: 1200px;
   margin: 8%;
 `;
+

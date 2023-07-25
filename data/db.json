@@ -37,10 +37,10 @@
       "image": "https://www.hindustantimes.com/ht-img/img/2023/06/28/1600x900/Minato_Namikaze_1677422619649_1687972121553.jpg"
     },
     {
-      "id": 7,
-      "title": "Jiraya",
+      "title": "jiraya",
+      "image": "https://www.fredzone.org/wp-content/uploads/2022/01/Naruto_La_posture_de_Jiraya.png",
       "otherName": "Legendary Sannin",
-      "image": "https://www.fredzone.org/wp-content/uploads/2022/01/Naruto_La_posture_de_Jiraya.png"
+      "id": 7
     }
   ]
 }
