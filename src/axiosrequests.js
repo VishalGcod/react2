@@ -4,15 +4,13 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import { NavTxt } from "./routecomp";
 
-
 export const Home = () => {
   const [data, setdata] = useState([]);
   const [load, setload] = useState(1);
-//   const [rej, setrej] = useState("");
+  const [search, setsearch] = useState("");
 
   //const=RegEx(value,i)
   //data.filter((ele)=>reg.test(ele?.title))
-  //
   useEffect(() => {
     axios
       .get("http://localhost:8000/Heros")
@@ -100,9 +98,38 @@ export const Home = () => {
     setload(upload);
   };
 
+  const searching = (e) => {
+    setsearch(e.target.value);
+  };
+
+  const searchresult = () => {
+    const filtdta = data.filter((i) => {
+      if (i.title.toLowerCase().includes(search.toLowerCase())) {
+        console.log(i.title);
+        axios
+      .get("http://localhost:8000/Heros/"+(i.id))
+      .then((res) => {
+        console.log(res);
+        setdata(res.data);
+      })
+      .catch((err) => alert(err));
+      } else {
+        console.log(false);
+      }
+    });
+  };
+
   // }
   return (
-    <div>
+    <div style={{ marginTop: "100px" }}>
+      <input
+        value={search}
+        type="search"
+        placeholder="search"
+        onChange={searching}
+        style={{ height: "23px" }}
+      ></input>
+      <button onClick={() => searchresult()}>search</button>
       {data.map((m, index) => (
         <DivImg>
           <h1>{m.title}</h1>
@@ -153,6 +180,5 @@ const DivImg = styled.div`
   background-color: orange;
   height: 650px;
   width: 1200px;
-  margin: 8%;
+  margin: 2%;
 `;
-

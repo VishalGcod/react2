@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Apis, Header } from "./reactPart2";
+// import { Apis, Header } from "./reactPart2";
 import { Formdta, Par } from "./form";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 import { Fill } from "./practiceasses3";
@@ -9,26 +9,17 @@ import { Disp } from "./newtry";
 import { Next } from "./next";
 import { Posting } from "./post ";
 import { Home } from "./axiosrequests";
-// import {BrowserRouter as Switch,
-//   Route,
-//   Router
-// } from 'react-router-dom';
-import { BrowserRouter as Router , Route , Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import {Login, About, NavTxt } from "./routecomp";
 
 function App() {
-  //     const [rating, setRating] = useState('');
-
-  //     const handleRatingChange = (newValue) => {
-  //       setRating(newValue);
-  //     };
   return (
     <div className="App">
       <Router>
       <div>
           <NavTxt/>
       <Switch>
-      
           <Route exact path="/">
             <Home />
           </Route>
@@ -39,12 +30,10 @@ function App() {
             <About />
           </Route>
         </Switch>
-      </div>
-        
+      </div> 
       </Router>
       {/* <Disp/> */}
-      {/* <h1>hi</h1>
-      <Par/> */}
+      {/* <Par/>  */}
       {/* <Formdta/> */}
       {/* <Header/> */}
       {/* <div> */}
@@ -55,7 +44,6 @@ function App() {
       {/* <p>Current Rating: {rating}</p> */}
       {/* <Next/> */}
       {/* <Posting/> */}
-     
       {/* <Home /> */}
     </div>
   );

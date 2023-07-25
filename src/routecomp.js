@@ -1,17 +1,20 @@
-import { Link } from 'react-router-dom';
-import { styled } from "styled-components";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x1800-7749.jpg";
 
 export const Login = () => {
-  return <h1>This Is Login</h1>;
+  return (
+    <Otherdivs>
+      <h1>This Is Login</h1>
+    </Otherdivs>
+  );
 };
 
 export const About = () => {
   return (
-    <div>
-        <h1>This Is About</h1>
-        <h1>This Is About</h1>
-    </div>
+    <Otherdivs>
+      <h1>This Is About</h1>
+    </Otherdivs>
   );
 };
 
@@ -74,4 +77,8 @@ const Impdiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const Otherdivs = styled.div`
+  margin-top: 150px;
 `;
