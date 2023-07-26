@@ -9,16 +9,18 @@ export const Home = () => {
   const [load, setload] = useState(1);
   const [search, setsearch] = useState("");
 
-  //const=RegEx(value,i)
-  //data.filter((ele)=>reg.test(ele?.title))
-  useEffect(() => {
+  const dataFetching = ()=>{
     axios
-      .get("http://localhost:8000/Heros")
-      .then((res) => {
-        console.log(res);
-        setdata(res.data);
-      })
-      .catch((err) => alert(err));
+  .get("http://localhost:8000/Heros")
+  .then((res) => {
+    console.log(res);
+    setdata(res.data);
+  })
+  .catch((err) => alert(err));
+}
+  useEffect(() => {
+    dataFetching()
+
   }, [load]);
 
   // function Req(){
@@ -31,6 +33,7 @@ export const Home = () => {
       image: data?.image,
       otherName: data?.otherName,
     };
+    alert('posting a data')
     axios
       .post("http://localhost:8000/Heros", newdta)
       .then((res) => console.log(res.data))
@@ -38,16 +41,21 @@ export const Home = () => {
   };
 
   const handledel = (id) => {
+    if((data.length)>=9){
     const upload = load + 1;
     setload(upload);
     console.log(id);
-    if (id === 1 || id == 4) {
+    console.log(data);
+    if (id === 1 || id == 4) {  
       alert("cant delete");
     } else {
+        alert(" deleted ");
       axios
         .delete("http://localhost:8000/Heros/" + id)
         .then((res) => console.log(res))
         .catch((err) => alert(err));
+    }}else{
+        alert('cant delete')
     }
   };
 
@@ -58,9 +66,10 @@ export const Home = () => {
     const newtitle = prompt("add new title");
     const getdata = {
       title: newtitle,
-      image: m.image,
-      otherName: m.otherName,
+      image: m?.image,
+      otherName: m?.otherName,
     };
+    alert('editing')
     axios
       .put("http://localhost:8000/Heros/" + m.id, getdata)
       .then((res) => console.log(res))
@@ -84,11 +93,11 @@ export const Home = () => {
 
   const submitdata = (e) => {
     e.preventDefault();
-    console.log(Form);
+    // console.log(Form);
     const newpost = {
-      title: Form.title,
-      image: Form.image,
-      otherName: Form.otherName,
+      title: Form?.title,
+      image: Form?.image,
+      otherName: Form?.otherName,
     };
     axios
       .post("http://localhost:8000/Heros", newpost)
@@ -97,29 +106,22 @@ export const Home = () => {
     const upload = load + 1;
     setload(upload);
   };
-
+  const [filtered,setfiltered]=useState([])
   const searching = (e) => {
     setsearch(e.target.value);
+    setfiltered(data?.filter((x) => x.title.toLowerCase().includes((e.target.value).toLowerCase())))
+    // if(search!==''){
+    // const filtdta = data.filter((i) =>
+    //   i.title.toLowerCase().includes(search.toLowerCase())
+    // );
+    // setdata(filtdta);
+    // }else{
+    //     dataFetching()
+    //     // setdata(data)
+    //     // setload(load+1)
+    // }
   };
 
-  const searchresult = () => {
-    const filtdta = data.filter((i) => {
-      if (i.title.toLowerCase().includes(search.toLowerCase())) {
-        console.log(i.title);
-        axios
-      .get("http://localhost:8000/Heros/"+(i.id))
-      .then((res) => {
-        console.log(res);
-        setdata(res.data);
-      })
-      .catch((err) => alert(err));
-      } else {
-        console.log(false);
-      }
-    });
-  };
-
-  // }
   return (
     <div style={{ marginTop: "100px" }}>
       <input
@@ -127,9 +129,18 @@ export const Home = () => {
         type="search"
         placeholder="search"
         onChange={searching}
-        style={{ height: "23px" }}
+        style={{ height: "23px", marginTop: "50px" }}
       ></input>
-      <button onClick={() => searchresult()}>search</button>
+        {search && filtered?.map((m, index) => (
+        <DivImg>
+            <h1>{m.title}</h1> 
+          <Image src={m.image} alt="heroImg"></Image>
+          <h3>{m.otherName}</h3>
+          <button onClick={() => handleedit(m)}>Edit</button>
+          <button onClick={() => handlepost(m)}>Post</button>
+          <button onClick={() => handledel(m.id)}>Delete</button>
+        </DivImg>
+      ))}
       {data.map((m, index) => (
         <DivImg>
           <h1>{m.title}</h1>
@@ -141,12 +152,13 @@ export const Home = () => {
         </DivImg>
       ))}
       <form onSubmit={submitdata}>
-        <input
+        <input 
           type="text"
           placeholder="add title"
           name="title"
           value={Form.title}
           onChange={handleimp}
+          required
         ></input>
         <input
           type="text"
@@ -154,6 +166,7 @@ export const Home = () => {
           name="image"
           value={Form.image}
           onChange={handleimp}
+          required
         ></input>
         <input
           type="text"
@@ -161,6 +174,7 @@ export const Home = () => {
           name="otherName"
           value={Form.otherName}
           onChange={handleimp}
+          required
         ></input>
         <button>Post Data</button>
       </form>
@@ -180,5 +194,5 @@ const DivImg = styled.div`
   background-color: orange;
   height: 650px;
   width: 1200px;
-  margin: 2%;
+  margin: 8%;
 `;

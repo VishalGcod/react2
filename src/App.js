@@ -12,25 +12,27 @@ import { Home } from "./axiosrequests";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import {Login, About, NavTxt } from "./routecomp";
+import { LifecycleA } from "./LifecycleA";
+import NotFound from "./routecomp";
 
-function App() {
+class App extends Component {
+  render(){
   return (
     <div className="App">
       <Router>
-      <div>
           <NavTxt/>
       <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            <Formdta />
           </Route>
           <Route path="/about">
             <About />
           </Route>
-        </Switch>
-      </div> 
+          <Route component={NotFound} />
+        </Switch> 
       </Router>
       {/* <Disp/> */}
       {/* <Par/>  */}
@@ -39,14 +41,16 @@ function App() {
       {/* <div> */}
       {/* <Fill/> */}
       {/* </div> */}
-      <div>{/* <Apis/> */}</div>
+      {/* <Apis/> */}
       {/* <StarRating rating={rating} onChange={handleRatingChange} /> */}
       {/* <p>Current Rating: {rating}</p> */}
       {/* <Next/> */}
       {/* <Posting/> */}
       {/* <Home /> */}
+      <LifecycleA/>
     </div>
   );
+  }
 }
 
 export default App;
