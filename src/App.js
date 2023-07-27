@@ -11,25 +11,29 @@ import { Posting } from "./post ";
 import { Home } from "./axiosrequests";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
-import {Login, About, NavTxt } from "./routecomp";
+import { Buyproduct, Login, About, NavTxt } from "./routecomp";
 import { LifecycleA } from "./LifecycleA";
 import NotFound from "./routecomp";
+import { useState } from "react";
 
-class App extends Component {
-  render(){
+function App() {
+    const [cartitem, setcartitems] = useState([]);
   return (
     <div className="App">
       <Router>
-          <NavTxt/>
+          <NavTxt cartitem={cartitem}/>
       <Switch>
           <Route exact path="/">
-            <Home />
+            <Home setcartitems={setcartitems} />
           </Route>
           <Route path="/login">
             <Formdta />
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/cart">
+            <Buyproduct cartitem={cartitem} setcartitems={setcartitems}/>
           </Route>
           <Route component={NotFound} />
         </Switch> 
@@ -47,10 +51,8 @@ class App extends Component {
       {/* <Next/> */}
       {/* <Posting/> */}
       {/* <Home /> */}
-      <LifecycleA/>
+      {/* <LifecycleA/> */}
     </div>
   );
   }
-}
-
 export default App;

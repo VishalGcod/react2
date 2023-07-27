@@ -3,27 +3,29 @@ import axios from "axios";
 import { useState } from "react";
 import { styled } from "styled-components";
 import { NavTxt } from "./routecomp";
+import { Buyproduct } from "./routecomp";
+import { Link } from "react-router-dom";
 
-export const Home = () => {
+export const Home = ({setcartitems}) => {
   const [data, setdata] = useState([]);
   const [load, setload] = useState(1);
   const [search, setsearch] = useState("");
 
-  const dataFetching = ()=>{
+  const dataFetching = () => {
     axios
-  .get("http://localhost:8000/Heros")
-  .then((res) => {
-    console.log(res);
-    setdata(res.data);
-  })
-  .catch((err) => alert(err));
-}
+      .get("http://localhost:8000/Heros")
+      .then((res) => {
+        if (res.status == 200) {
+          setdata(res.data);
+        } else {
+          console.log("error");
+        }
+      })
+      .catch((err) => alert(err));
+  };
   useEffect(() => {
-    dataFetching()
-
+    dataFetching();
   }, [load]);
-
-  // function Req(){
 
   const handlepost = (data) => {
     const upload = load + 1;
@@ -33,7 +35,7 @@ export const Home = () => {
       image: data?.image,
       otherName: data?.otherName,
     };
-    alert('posting a data')
+    alert("posting a data");
     axios
       .post("http://localhost:8000/Heros", newdta)
       .then((res) => console.log(res.data))
@@ -41,21 +43,20 @@ export const Home = () => {
   };
 
   const handledel = (id) => {
-    if((data.length)>=9){
-    const upload = load + 1;
-    setload(upload);
-    console.log(id);
-    console.log(data);
-    if (id === 1 || id == 4) {  
-      alert("cant delete");
-    } else {
+    if (data.length >= 9) {
+      const upload = load + 1;
+      setload(upload);
+      if (id === 1 || id == 4) {
+        alert("cant delete");
+      } else {
         alert(" deleted ");
-      axios
-        .delete("http://localhost:8000/Heros/" + id)
-        .then((res) => console.log(res))
-        .catch((err) => alert(err));
-    }}else{
-        alert('cant delete')
+        axios
+          .delete("http://localhost:8000/Heros/" + id)
+          .then((res) => console.log(res))
+          .catch((err) => alert(err));
+      }
+    } else {
+      alert("cant delete");
     }
   };
 
@@ -69,7 +70,7 @@ export const Home = () => {
       image: m?.image,
       otherName: m?.otherName,
     };
-    alert('editing')
+    alert("editing");
     axios
       .put("http://localhost:8000/Heros/" + m.id, getdata)
       .then((res) => console.log(res))
@@ -93,7 +94,6 @@ export const Home = () => {
 
   const submitdata = (e) => {
     e.preventDefault();
-    // console.log(Form);
     const newpost = {
       title: Form?.title,
       image: Form?.image,
@@ -106,21 +106,26 @@ export const Home = () => {
     const upload = load + 1;
     setload(upload);
   };
-  const [filtered,setfiltered]=useState([])
+  const [filtered, setfiltered] = useState([]);
   const searching = (e) => {
     setsearch(e.target.value);
-    setfiltered(data?.filter((x) => x.title.toLowerCase().includes((e.target.value).toLowerCase())))
-    // if(search!==''){
-    // const filtdta = data.filter((i) =>
-    //   i.title.toLowerCase().includes(search.toLowerCase())
-    // );
-    // setdata(filtdta);
-    // }else{
-    //     dataFetching()
-    //     // setdata(data)
-    //     // setload(load+1)
-    // }
+    setfiltered(
+      data?.filter((x) =>
+        x.title.toLowerCase().includes(e.target.value.toLowerCase())
+      )
+    );
   };
+  
+  const Addtocart = (m) => {
+    setcartitems((prevcartData) => [...prevcartData, m]);
+  };
+
+  // const Addtocart = (m) => {
+  //   axios
+  //     .post("http://localhost:3000/cart", m)
+  //     .then((res) => console.log(res))
+  //     .catch((err) => alert(err));
+  // };
 
   return (
     <div style={{ marginTop: "100px" }}>
@@ -131,34 +136,40 @@ export const Home = () => {
         onChange={searching}
         style={{ height: "23px", marginTop: "50px" }}
       ></input>
-        {search && filtered?.map((m, index) => (
-        <DivImg>
-            <h1>{m.title}</h1> 
-          <Image src={m.image} alt="heroImg"></Image>
-          <h3>{m.otherName}</h3>
-          <button onClick={() => handleedit(m)}>Edit</button>
-          <button onClick={() => handlepost(m)}>Post</button>
-          <button onClick={() => handledel(m.id)}>Delete</button>
-        </DivImg>
-      ))}
+      {search &&
+        filtered?.map((m, index) => (
+          <DivImg>
+            <h1>{m.title}</h1>
+            <Image src={m.image} alt="heroImg"></Image>
+            <h3>{m.otherName}</h3>
+            <h2>Rs.{m.price}</h2>
+            <button onClick={() => handleedit(m)}>Edit</button>
+            <button onClick={() => handlepost(m)}>Post</button>
+            <button onClick={() => handledel(m.id)}>Delete</button>
+          </DivImg>
+        ))}
       {data.map((m, index) => (
         <DivImg>
           <h1>{m.title}</h1>
           <Image src={m.image} alt="heroImg"></Image>
           <h3>{m.otherName}</h3>
+          <h2>Rs.{m.price}</h2>
           <button onClick={() => handleedit(m)}>Edit</button>
           <button onClick={() => handlepost(m)}>Post</button>
           <button onClick={() => handledel(m.id)}>Delete</button>
+            <button onClick={() => Addtocart(m)}>To Cart</button>
         </DivImg>
       ))}
       <form onSubmit={submitdata}>
-        <input 
+        <input
           type="text"
           placeholder="add title"
           name="title"
           value={Form.title}
           onChange={handleimp}
           required
+          maxLength={10}
+          pattern="[a-zA-Z]+"
         ></input>
         <input
           type="text"
@@ -175,6 +186,8 @@ export const Home = () => {
           value={Form.otherName}
           onChange={handleimp}
           required
+          maxLength={10}
+          pattern="[a-zA-Z]+"
         ></input>
         <button>Post Data</button>
       </form>
