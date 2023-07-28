@@ -35,21 +35,9 @@ export const About = () => {
 };
 
 export const Buyproduct = ({ setcartitems, cartitem }) => {
-  // console.log(red);
-  // red=(props.id).filter((a,b)=>a+b)
-  // red=props.id.reduce((a,b)=>a+b)
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3000/cart")
-  //     .then((res) => {
-  //       getcartitems(res.data);
-  //       console.log(cartitem);
-  //     })
-  //     .catch((err) => alert(err));
-  // }, []);
 
   const deleteItem = (index) => {
-    const delitem = cartitem?.filter((_,i) => i !== index);
+    const delitem = cartitem.filter((_,i) => i !== index);
     setcartitems(delitem);
   };
   let total=0

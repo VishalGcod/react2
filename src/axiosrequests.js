@@ -120,13 +120,6 @@ export const Home = ({setcartitems}) => {
     setcartitems((prevcartData) => [...prevcartData, m]);
   };
 
-  // const Addtocart = (m) => {
-  //   axios
-  //     .post("http://localhost:3000/cart", m)
-  //     .then((res) => console.log(res))
-  //     .catch((err) => alert(err));
-  // };
-
   return (
     <div style={{ marginTop: "100px" }}>
       <input
