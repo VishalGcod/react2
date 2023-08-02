@@ -2,13 +2,9 @@ export const ADD_INPUT = "ADD_INPUT";
 export const ARRAY_DATA = "ARRAY_DATA";
 export const EDIT_ARRAY = "EDIT_ARRAY";
 export const UPDATE_DATA = "UPDATE_DATA";
-
-// export const addInput = (inputdata) => {
-//   return {
-//     type: ADD_INPUT,
-//     payload: inputdata,
-//   };
-// };
+export const FETCH_USER_REQUEST = "FETCH_USER_REQUEST";
+export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
+export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE";
 
 export const addToArr = (arrobj) => {
   return {
@@ -23,9 +19,27 @@ export const editToArr = (editarrobj) => {
   };
 };
 
-export const updateData = (updatearrobj) => {
+export const updateData = (updata) => {
   return {
     type: UPDATE_DATA,
-    payload: updatearrobj,
+    payload: updata,
+  };
+};
+
+export const fetchUserRequest = () => {
+  return {
+    type: FETCH_USER_REQUEST,
+  };
+};
+export const fetchUserSuccess = (data) => {
+  return {
+    type: FETCH_USER_SUCCESS,
+    payload: data,
+  };
+};
+export const fetchUserFailure = (fail) => {
+  return {
+    type: FETCH_USER_SUCCESS,
+    payload: fail,
   };
 };

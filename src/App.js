@@ -7,6 +7,7 @@ import HooksCakeContainer from "./components/HooksCakeContainer";
 import IcecreamContainer from "./components/icecreamContainer";
 import InputComponent from "./components/InputComponent";
 import InputDisplay from "./components/inputDisplay";
+import ApiFetching from "./components/apiFetching";
 function App() {
   return (
     <Provider store={store}>
@@ -14,6 +15,7 @@ function App() {
         {/* <CakeContainer />
         <HooksCakeContainer />
         <IcecreamContainer /> */}
+        <ApiFetching/>
         <InputComponent/>
         <InputDisplay/>
       </div>
