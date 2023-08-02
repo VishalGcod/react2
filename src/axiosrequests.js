@@ -6,7 +6,7 @@ import { NavTxt } from "./routecomp";
 import { Buyproduct } from "./routecomp";
 import { Link } from "react-router-dom";
 
-export const Home = ({setcartitems}) => {
+export const Home = ({ setcartitems, cartitem }) => {
   const [data, setdata] = useState([]);
   const [load, setload] = useState(1);
   const [search, setsearch] = useState("");
@@ -110,14 +110,17 @@ export const Home = ({setcartitems}) => {
   const searching = (e) => {
     setsearch(e.target.value);
     setfiltered(
-      data?.filter((x) =>
-        x.title.toLowerCase().includes(e.target.value.toLowerCase())
+      data?.filter((f) =>
+        f.title?.toLowerCase()?.includes(e.target.value.toLowerCase())
       )
     );
   };
-  
+
+  // const [cartitem, setcartitems] = useState([]);
   const Addtocart = (m) => {
     setcartitems((prevcartData) => [...prevcartData, m]);
+    const itemCount=cartitem.length
+    console.log(itemCount);
   };
 
   return (
@@ -141,7 +144,7 @@ export const Home = ({setcartitems}) => {
             <button onClick={() => handledel(m.id)}>Delete</button>
           </DivImg>
         ))}
-      {data.map((m, index) => (
+      {data?.map((m, index) => (
         <DivImg>
           <h1>{m.title}</h1>
           <Image src={m.image} alt="heroImg"></Image>
@@ -150,7 +153,7 @@ export const Home = ({setcartitems}) => {
           <button onClick={() => handleedit(m)}>Edit</button>
           <button onClick={() => handlepost(m)}>Post</button>
           <button onClick={() => handledel(m.id)}>Delete</button>
-            <button onClick={() => Addtocart(m)}>To Cart</button>
+          <button onClick={() => Addtocart(m)}>To Cart</button>
         </DivImg>
       ))}
       <form onSubmit={submitdata}>

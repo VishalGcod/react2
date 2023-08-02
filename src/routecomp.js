@@ -4,7 +4,7 @@ import itachi from "./itachi-uchiha-naruto-minimal-art-red-background-5k-2880x18
 import { Home } from "./axiosrequests";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { AiFillDelete, AiOutlineShoppingCart} from "react-icons/ai";
+import { AiFillDelete, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsYinYang } from "react-icons/bs";
 
 const NotFound = () => {
@@ -35,50 +35,59 @@ export const About = () => {
 };
 
 export const Buyproduct = ({ setcartitems, cartitem }) => {
-
   const deleteItem = (index) => {
-    const delitem = cartitem.filter((_,i) => i !== index);
+    const delitem = cartitem.filter((_, i) => i !== index);
     setcartitems(delitem);
   };
-  let total=0
-  total=cartitem.reduce((tot,item)=>tot+item?.price,0)
+  let total = 0;
+  total = cartitem.reduce((tot, item) => tot + item?.price, 0);
+
+  const count=0
+  const repeat=cartitem.map((e)=>{if(cartitem.id===cartitem.id){
+    console.log('repeated'+cartitem.id,count+1);
+  }})
 
   return (
     <Otherdivs>
-      {cartitem?.length===0 ? <h1>Cart Empty Add Items <BsYinYang/> </h1>:
-      <Table>
-        <thead>
-          <Tabledata>
-            <Tabledata2>Index</Tabledata2>
-            <Tabledata2>Hero Name</Tabledata2>
-            <Tabledata2>items id</Tabledata2>
-          </Tabledata>
-        </thead>
-        {cartitem?.map((e, index) => (
-          <tbody>
+      {cartitem?.length === 0 ? (
+        <h1>
+          Cart Empty Add Items <BsYinYang />{" "}
+        </h1>
+      ) : (
+        <Table>
+          <thead>
             <Tabledata>
-              <Tabledata2>{index + 1}</Tabledata2>
-              <Tabledata2>
-                {e?.title} {e?.otherName}
-              </Tabledata2>
-              <Tabledata2>{e?.id}</Tabledata2>
-              <Tabledata2>
-                <button onClick={() => deleteItem(index)}>
-                  <AiFillDelete />
-                </button>
-              </Tabledata2>
-              <Tabledata2>Rs. {e?.price}</Tabledata2>
+              <Tabledata2>Index</Tabledata2>
+              <Tabledata2>Hero Name</Tabledata2>
+              <Tabledata2>items id</Tabledata2>
             </Tabledata>
-          </tbody>
-        ))}
-        <h4>total selected:{cartitem?.length}</h4>
-        <h5>total Price:{total}</h5>
-      </Table>}
+          </thead>
+          {cartitem?.map((e, index) => (
+            <tbody>
+              <Tabledata>
+                <Tabledata2>{index + 1}</Tabledata2>
+                <Tabledata2>
+                  {e?.title} {e?.otherName}
+                </Tabledata2>
+                <Tabledata2>{e?.id}</Tabledata2>
+                <Tabledata2>
+                  <button onClick={() => deleteItem(index)}>
+                    <AiFillDelete />
+                  </button>
+                </Tabledata2>
+                <Tabledata2>Rs. {e?.price}</Tabledata2>
+              </Tabledata>
+            </tbody>
+          ))}
+          <h4>total selected:{cartitem?.length}</h4>
+          <h5>total Price:{total}</h5>
+        </Table>
+      )}
     </Otherdivs>
   );
 };
 
-export const NavTxt = ({cartitem}) => {
+export const NavTxt = ({ cartitem }) => {
   return (
     <div>
       <Header>
@@ -90,11 +99,12 @@ export const NavTxt = ({cartitem}) => {
           ></img>
         </Imgdiv>
         <Nav>
-        <Links to="/login">Login</Links>
+          <Links to="/login">Login</Links>
           <Links to="/">Products</Links>
           <Links to="/about">About</Links>
           <Links to="/cart">
-            <AiOutlineShoppingCart/><button>{cartitem?.length}</button>
+            <AiOutlineShoppingCart />
+            <button>{cartitem?.length}</button>
           </Links>
         </Nav>
       </Header>

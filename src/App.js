@@ -20,11 +20,11 @@ function App() {
     const [cartitem, setcartitems] = useState([]);
   return (
     <div className="App">
-      <Router>
+      {/* <Router>
           <NavTxt cartitem={cartitem}/>
       <Switch>
           <Route exact path="/">
-            <Home setcartitems={setcartitems} />
+            <Home setcartitems={setcartitems} cartitem={cartitem}/>
           </Route>
           <Route path="/login">
             <Formdta />
@@ -37,7 +37,7 @@ function App() {
           </Route>
           <Route component={NotFound} />
         </Switch> 
-      </Router>
+      </Router> */}
       {/* <Disp/> */}
       {/* <Par/>  */}
       {/* <Formdta/> */}
